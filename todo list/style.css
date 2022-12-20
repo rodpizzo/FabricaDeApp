@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    font-family: sans-serif;
+}
+header{
+    background-color: rgb(46, 46, 184);
+    height: 60px;
+    color: white;
+    font-weight: 700;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    
+}
+
+#app{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+
+button{
+    margin-left: 10px;
+}
+
+.ip2 {
+    border-radius: 25px;
+    border: 2px solid rgb(38, 67, 201);
+    padding: 10px 5px; 
+    width: 150px;
+    height: 7px; 
+    
+}
