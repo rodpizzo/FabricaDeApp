@@ -1,0 +1,75 @@
+#conexao com o banco
+import mysql.connector
+
+conexao=mysql.connector.connect(
+    host="br228.hostgator.com.br",
+    user="rodol628_user",
+    password="---",
+    database="rodol628_flash"
+)
+cursor = conexao.cursor()
+
+#CRUD
+def adicionar_estoque(nome,valor):
+    comando=f'INSERT INTO estoque (nome,valor) values ("{nome}","{valor}")'
+    cursor.execute(comando)
+    conexao.commit()
+
+def ver_estoque():
+    comando='SELECT * FROM estoque'
+    cursor.execute(comando)
+    resultado=cursor.fetchall()
+    print(resultado)
+
+def alterar_estoque(valor,nome):
+    comando=f'UPDATE estoque SET valor ={valor} WHERE nome ="{nome}"'
+    cursor.execute(comando)
+    conexao.commit()
+
+def excluir_estoque(nome):
+    comando=f'DELETE FROM estoque WHERE nome ="{nome}"'
+    cursor.execute(comando)
+    conexao.commit()
+
+def menu():
+    print("  ")
+    print("   *******  MENU  *******")
+    print("Adicionar produto..........1")
+    print("Ver estoque................2")
+    print("alterar valor .............3")
+    print("excluir produto............4")
+    print("Sair.......................0")
+    op = input("-> ")
+    return op
+
+def main():
+    op=menu()
+    while op != 0:
+        if op == '1':
+            nome=input('qual o nome da estoque?')
+            valor=float(input("qual o preço da estoque?"))
+            adicionar_estoque(nome, valor)
+            op=menu()
+
+        if op =='2':
+            ver_estoque()
+            op=menu()
+
+        if op =='3':
+            nome=input("qual item deseja alterar?")
+            valor=float(input("qual o novo valor?"))
+            alterar_estoque(valor, nome)
+            op=menu()
+
+        if op=='4':
+            nome=input("qual produto quer excluir?")
+            excluir_estoque(nome)
+            op=menu()
+        
+        if op =='0':
+            cursor.close()
+            conexao.close()
+            break
+main()
+
+
